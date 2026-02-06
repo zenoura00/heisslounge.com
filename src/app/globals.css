@@ -4,14 +4,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Dark Theme (Default) */
+:root,
+[data-theme="dark"] {
   --gold: #c9a962;
   --gold-light: #d4b87a;
   --gold-dark: #a08339;
   --bg-dark: #0f0f0f;
   --bg-darker: #0a0a0a;
+  --bg-light: #1a1a1a;
+  --card-bg: #1a1a1a;
+  --card-hover: #252525;
   --text-light: #e8e8e8;
   --text-muted: #8a8a8a;
+  --border-color: rgba(201, 169, 98, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --spotlight-opacity: 0.08;
+  --particle-opacity: 0.5;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --gold: #a08339;
+  --gold-light: #c9a962;
+  --gold-dark: #7a6329;
+  --bg-dark: #f5f3ef;
+  --bg-darker: #ebe7df;
+  --bg-light: #ffffff;
+  --card-bg: #ffffff;
+  --card-hover: #f8f6f2;
+  --text-light: #1a1a1a;
+  --text-muted: #666666;
+  --border-color: rgba(160, 131, 57, 0.3);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --spotlight-opacity: 0.15;
+  --particle-opacity: 0.7;
 }
 
 * {
@@ -30,6 +57,7 @@ body {
   color: var(--text-light);
   min-height: 100vh;
   line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {

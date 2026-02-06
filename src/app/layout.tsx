@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import AppWrapper from "@/components/AppWrapper";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://heiss-lounge.vercel.app"),
@@ -42,9 +43,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="de">
+    <html lang="de" suppressHydrationWarning>
       <body className="antialiased">
-        <AppWrapper>{children}</AppWrapper>
+        <ThemeProvider>
+          <AppWrapper>{children}</AppWrapper>
+        </ThemeProvider>
       </body>
     </html>
   );

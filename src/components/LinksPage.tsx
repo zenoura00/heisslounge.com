@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 import MovingSpotlight from "./MovingSpotlight";
 import MouseTrail from "./MouseTrail";
 import FloatingParticles from "./FloatingParticles";
+import ThemeToggle from "./ThemeToggle";
 
 export default function LinksPage() {
   const router = useRouter();
@@ -129,10 +130,9 @@ export default function LinksPage() {
       {/* Splash Screen Overlay */}
       {showSplash && (
         <div
-          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out ${
+          className={`fixed inset-0 z-[100] flex flex-col items-center justify-center transition-opacity duration-700 ease-out bg-[var(--bg-dark)] ${
             isFading ? "opacity-0" : "opacity-100"
           }`}
-          style={{ backgroundColor: "#0f0f0f" }}
         >
           {/* Logo */}
           <div className="animate-fadeIn flex items-center justify-center">
@@ -150,12 +150,12 @@ export default function LinksPage() {
           {/* Text below logo */}
           <div className="mt-6 text-center animate-fadeInDelayed">
             <h1
-              className="text-[#c9a962] text-xl sm:text-2xl md:text-3xl tracking-[0.3em] font-light"
+              className="text-[var(--gold)] text-xl sm:text-2xl md:text-3xl tracking-[0.3em] font-light"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
               HEIß LOUNGE
             </h1>
-            <p className="text-[#8a8a8a] text-xs sm:text-sm tracking-[0.2em] mt-2">
+            <p className="text-[var(--text-muted)] text-xs sm:text-sm tracking-[0.2em] mt-2">
               MENU
             </p>
           </div>
@@ -163,7 +163,10 @@ export default function LinksPage() {
       )}
 
       {/* Main Links Page */}
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12 relative" style={{ backgroundColor: "#0f0f0f" }}>
+      <div className="min-h-screen flex flex-col items-center justify-center px-6 py-12 relative bg-[var(--bg-dark)] transition-colors duration-400">
+        {/* Theme Toggle Button */}
+        <ThemeToggle />
+
         {/* Moving Spotlight Background */}
         <MovingSpotlight />
 
@@ -177,7 +180,7 @@ export default function LinksPage() {
         <div className="mb-6 animate-fadeIn">
           <div className="relative w-36 h-36 sm:w-44 sm:h-44 animate-float">
             {/* Glow ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#c9a962] to-[#8a7340] animate-pulse-glow opacity-30" />
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--gold)] to-[var(--gold-dark)] animate-pulse-glow opacity-30" />
             {/* Logo */}
             <div className="absolute inset-0 flex items-center justify-center">
               <Image
@@ -196,13 +199,13 @@ export default function LinksPage() {
         {/* Title */}
         <div className="text-center mb-10 animate-fadeInDelayed">
           <h1
-            className="text-[#c9a962] text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] font-light"
+            className="text-[var(--gold)] text-2xl sm:text-3xl md:text-4xl tracking-[0.2em] font-light"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Heiss Lounge
           </h1>
           <p
-            className="text-[#c9a962] text-sm sm:text-base tracking-[0.15em] mt-2 font-light"
+            className="text-[var(--gold)] text-sm sm:text-base tracking-[0.15em] mt-2 font-light"
             style={{ fontFamily: "'Cormorant Garamond', serif" }}
           >
             Herzlich Willkommen
@@ -222,18 +225,18 @@ export default function LinksPage() {
                   window.open(link.href, "_blank", "noopener,noreferrer");
                 }
               }}
-              className="w-full flex items-center gap-4 px-5 py-4 rounded-full bg-[#1a1a1a] border-2 border-[#c9a962] hover:bg-[#252525] hover:border-[#d4b87a] hover:scale-[1.02] transition-all duration-300 group"
+              className="w-full flex items-center gap-4 px-5 py-4 rounded-full bg-[var(--card-bg)] border-2 border-[var(--gold)] hover:bg-[var(--card-hover)] hover:border-[var(--gold-light)] hover:scale-[1.02] transition-all duration-300 group"
             >
               {/* Icon Container */}
-              <div className="w-12 h-12 rounded-full bg-[#0f0f0f] flex items-center justify-center flex-shrink-0 border border-[#c9a962]/30">
-                <span className="text-[#c9a962] group-hover:scale-110 transition-transform duration-300">
+              <div className="w-12 h-12 rounded-full bg-[var(--bg-dark)] flex items-center justify-center flex-shrink-0 border border-[var(--gold)]/30">
+                <span className="text-[var(--gold)] group-hover:scale-110 transition-transform duration-300">
                   {link.icon}
                 </span>
               </div>
 
               {/* Label */}
               <span
-                className="flex-1 text-center text-white text-base sm:text-lg tracking-wider font-light pr-12"
+                className="flex-1 text-center text-[var(--text-light)] text-base sm:text-lg tracking-wider font-light pr-12"
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
                 {link.label}
@@ -247,7 +250,7 @@ export default function LinksPage() {
           {/* Phone Call */}
           <a
             href="tel:+4917623296860"
-            className="w-12 h-12 rounded-full bg-[#1a1a1a] border border-[#c9a962]/40 flex items-center justify-center text-[#c9a962] hover:bg-[#c9a962] hover:text-black hover:border-[#c9a962] transition-all duration-300"
+            className="w-12 h-12 rounded-full bg-[var(--card-bg)] border border-[var(--gold)]/40 flex items-center justify-center text-[var(--gold)] hover:bg-[var(--gold)] hover:text-[var(--bg-dark)] hover:border-[var(--gold)] transition-all duration-300"
             aria-label="Anrufen"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -260,7 +263,7 @@ export default function LinksPage() {
             href="https://wa.me/4917623296860"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-12 h-12 rounded-full bg-[#1a1a1a] border border-[#25D366]/40 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-300"
+            className="w-12 h-12 rounded-full bg-[var(--card-bg)] border border-[#25D366]/40 flex items-center justify-center text-[#25D366] hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all duration-300"
             aria-label="WhatsApp"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
@@ -273,14 +276,14 @@ export default function LinksPage() {
         <div className="w-full max-w-md mt-10 animate-fadeInDelayed">
           {/* Section Title with Lines */}
           <div className="flex items-center gap-4 mb-6">
-            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[#c9a962]/50" />
+            <div className="flex-1 h-[1px] bg-gradient-to-r from-transparent to-[var(--gold)]/50" />
             <span
-              className="text-[#c9a962] text-sm sm:text-base tracking-wider whitespace-nowrap"
+              className="text-[var(--gold)] text-sm sm:text-base tracking-wider whitespace-nowrap"
               style={{ fontFamily: "'Cormorant Garamond', serif" }}
             >
               Wie hast du uns gefunden?
             </span>
-            <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#c9a962]/50" />
+            <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[var(--gold)]/50" />
           </div>
 
           {/* Source Buttons */}
@@ -292,8 +295,8 @@ export default function LinksPage() {
                 onClick={() => setSelectedSource(option.id)}
                 className={`relative px-4 py-2 rounded-full text-sm tracking-wider transition-all duration-300 ${
                   selectedSource === option.id
-                    ? "bg-[#c9a962] text-black border-2 border-[#c9a962]"
-                    : "bg-[#1a1a1a] text-[#8a8a8a] border border-[#3a3a3a] hover:border-[#c9a962]/50 hover:text-white"
+                    ? "bg-[var(--gold)] text-[var(--bg-dark)] border-2 border-[var(--gold)]"
+                    : "bg-[var(--card-bg)] text-[var(--text-muted)] border border-[var(--border-color)] hover:border-[var(--gold)]/50 hover:text-[var(--text-light)]"
                 }`}
                 style={{ fontFamily: "'Montserrat', sans-serif" }}
               >
@@ -310,7 +313,7 @@ export default function LinksPage() {
 
         {/* Footer */}
         <div className="mt-10 text-center animate-fadeInDelayed">
-          <p className="text-[#8a8a8a] text-xs tracking-wider">
+          <p className="text-[var(--text-muted)] text-xs tracking-wider">
             SHISHA & COCKTAIL BAR
           </p>
         </div>

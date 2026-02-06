@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useTheme } from "./ThemeProvider";
 
 interface Trail {
   id: number;
@@ -13,6 +14,7 @@ export default function MouseTrail() {
   const [trails, setTrails] = useState<Trail[]>([]);
   const [isMounted, setIsMounted] = useState(false);
   const trailIdRef = useRef(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,11 +50,15 @@ export default function MouseTrail() {
 
   if (!isMounted) return null;
 
+  // Different colors for light and dark themes
+  const goldColor = theme === "light" ? "160, 131, 57" : "201, 169, 98";
+  const opacityMultiplier = theme === "light" ? 1.2 : 1;
+
   return (
     <div className="fixed inset-0 pointer-events-none z-50">
       {trails.map((trail, index) => {
         const age = Date.now() - trail.timestamp;
-        const opacity = Math.max(0, 1 - age / 500) * 0.6;
+        const opacity = Math.max(0, 1 - age / 500) * 0.6 * opacityMultiplier;
         const scale = Math.max(0.1, 1 - age / 500);
         const size = 8 + (trails.length - index) * 0.5;
 
@@ -65,8 +71,8 @@ export default function MouseTrail() {
               top: trail.y - size / 2,
               width: size,
               height: size,
-              background: `radial-gradient(circle, rgba(201, 169, 98, ${opacity}) 0%, rgba(201, 169, 98, 0) 70%)`,
-              boxShadow: `0 0 ${size}px rgba(201, 169, 98, ${opacity * 0.8})`,
+              background: `radial-gradient(circle, rgba(${goldColor}, ${opacity}) 0%, rgba(${goldColor}, 0) 70%)`,
+              boxShadow: `0 0 ${size}px rgba(${goldColor}, ${opacity * 0.8})`,
               transform: `scale(${scale})`,
               transition: "opacity 0.1s ease-out",
             }}
@@ -83,7 +89,7 @@ export default function MouseTrail() {
             top: trails[trails.length - 1].y - 20,
             width: 40,
             height: 40,
-            background: `radial-gradient(circle, rgba(201, 169, 98, 0.15) 0%, transparent 70%)`,
+            background: `radial-gradient(circle, rgba(${goldColor}, ${0.15 * opacityMultiplier}) 0%, transparent 70%)`,
             transition: "left 0.05s ease-out, top 0.05s ease-out",
           }}
         />

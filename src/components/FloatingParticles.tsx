@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTheme } from "./ThemeProvider";
 
 interface Particle {
   id: number;
@@ -15,6 +16,7 @@ interface Particle {
 export default function FloatingParticles() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isMounted, setIsMounted] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     setIsMounted(true);
@@ -38,6 +40,10 @@ export default function FloatingParticles() {
 
   if (!isMounted) return null;
 
+  // Different colors for light and dark themes
+  const goldColor = theme === "light" ? "160, 131, 57" : "201, 169, 98";
+  const opacityMultiplier = theme === "light" ? 1.4 : 1;
+
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       {particles.map((particle) => (
@@ -49,8 +55,8 @@ export default function FloatingParticles() {
             bottom: `-${particle.size}px`,
             width: `${particle.size}px`,
             height: `${particle.size}px`,
-            background: `radial-gradient(circle, rgba(201, 169, 98, ${particle.opacity}) 0%, rgba(201, 169, 98, 0) 70%)`,
-            boxShadow: `0 0 ${particle.size * 2}px rgba(201, 169, 98, ${particle.opacity * 0.5})`,
+            background: `radial-gradient(circle, rgba(${goldColor}, ${particle.opacity * opacityMultiplier}) 0%, rgba(${goldColor}, 0) 70%)`,
+            boxShadow: `0 0 ${particle.size * 2}px rgba(${goldColor}, ${particle.opacity * 0.5 * opacityMultiplier})`,
             animation: `floatUp ${particle.duration}s linear ${particle.delay}s infinite`,
           }}
         />
