@@ -214,12 +214,40 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Logo floating animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Glow pulsing animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(201, 169, 98, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(201, 169, 98, 0.5);
+  }
+}
+
 .animate-fadeIn {
   animation: fadeIn 1s ease-out forwards;
 }
 
 .animate-fadeInDelayed {
   animation: fadeInDelayed 1.5s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 /* Mobile Optimizations */

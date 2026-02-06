@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Check } from "lucide-react";
 import MovingSpotlight from "./MovingSpotlight";
+import MouseTrail from "./MouseTrail";
+import FloatingParticles from "./FloatingParticles";
 
 export default function LinksPage() {
   const router = useRouter();
@@ -165,18 +167,29 @@ export default function LinksPage() {
         {/* Moving Spotlight Background */}
         <MovingSpotlight />
 
-        {/* Logo - without white background */}
+        {/* Mouse Trail Effect */}
+        <MouseTrail />
+
+        {/* Floating Golden Particles */}
+        <FloatingParticles />
+
+        {/* Logo - with floating animation */}
         <div className="mb-6 animate-fadeIn">
-          <div className="w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
-            <Image
-              src="/splash-logo.png"
-              alt="Heiß Lounge"
-              width={180}
-              height={180}
-              className="w-full h-auto object-contain drop-shadow-[0_0_15px_rgba(201,169,98,0.3)]"
-              priority
-              unoptimized
-            />
+          <div className="relative w-36 h-36 sm:w-44 sm:h-44 animate-float">
+            {/* Glow ring */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#c9a962] to-[#8a7340] animate-pulse-glow opacity-30" />
+            {/* Logo */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Image
+                src="/splash-logo.png"
+                alt="Heiß Lounge"
+                width={180}
+                height={180}
+                className="w-full h-auto object-contain drop-shadow-[0_0_20px_rgba(201,169,98,0.4)]"
+                priority
+                unoptimized
+              />
+            </div>
           </div>
         </div>
 
